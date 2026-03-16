@@ -39,10 +39,10 @@ class AutomationGUI:
     # Start subprocess
     def start_script(self):
         if self.process is None:
-            # Path to main.py
-            script_path = os.path.join(os.path.dirname(__file__), "main.py")
+            # Path to game_automation.py
+            script_path = os.path.join(os.path.dirname(__file__), "game_automation.py")
 
-            # Run main.py as unbuffered subprocess
+            # Run game_automation.py as unbuffered subprocess
             self.process = subprocess.Popen(
                 [os.path.join("..", "venv", "Scripts", "python.exe"), "-u", script_path],
                 stdout=subprocess.PIPE,
@@ -92,10 +92,10 @@ class AutomationGUI:
 
         self.master.after(1000, self.update_timer)
 
-    # Thread to read output from main.py
+    # Thread to read output from game_automation.py
     def read_output_thread(self):
         for line in self.process.stdout:
-            print(line.strip())  # הפלט של main.py מגיע ישר לקונסול של IntelliJ
+            print(line.strip())  # The output of game_automation.py goes directly to the IntelliJ console
 
 # Run the GUI
 root = tk.Tk()

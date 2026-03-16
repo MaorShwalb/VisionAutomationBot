@@ -6,16 +6,16 @@ import threading
 import os
 
 # ---------------------------------------------------
-# גרסה חלקה ואופטימלית + 4 לחיצות X
+# Smooth and optimized version + 4 X presses
 # ---------------------------------------------------
 
 pyautogui.FAILSAFE = True
 
-print("🚀 מתחיל בעוד 2 שניות...")
+print("🚀 Starting in 2 seconds...")
 time.sleep(2)
 
 # ===============================
-# משתנים עולמיים
+# Global variables
 # ===============================
 left_counter = 0
 right_counter = 0
@@ -25,14 +25,14 @@ press_c_flag = False
 press_v_flag = False
 
 # ===============================
-# נתיבים יחסים לתמונות
+# Relative paths to images
 # ===============================
 images_dir = os.path.join("..", "images")
 left_image_path = os.path.join(images_dir, "left_side.png")
 right_image_path = os.path.join(images_dir, "right_side.png")
 
 # ===============================
-# פונקציה ללחיצות X (🔥 עכשיו 4)
+# Function for X presses (🔥 now 4)
 # ===============================
 def press_x_sequence():
     for _ in range(4):
@@ -70,7 +70,7 @@ threading.Thread(target=monitor_v, daemon=True).start()
 def monitor_y():
     while True:
         time.sleep(random.uniform(600, 900))
-        print("💥 Thread: לוחץ Y פעמיים!")
+        print("💥 Thread: Pressing Y twice!")
 
         keyboard.press('y')
         time.sleep(random.uniform(0.08, 0.18))
@@ -82,15 +82,15 @@ def monitor_y():
         time.sleep(random.uniform(0.08, 0.18))
         keyboard.release('y')
 
-        print("💥 סיים לחיצה על Y")
+        print("💥 Finished pressing Y")
 
 threading.Thread(target=monitor_y, daemon=True).start()
 
 # ===============================
-# לולאה ראשית
+# Main loop
 # ===============================
 for main_cycle in range(20000):
-    print(f"\n🔁 סבב מספר {main_cycle + 1}")
+    print(f"\n🔁 Cycle number {main_cycle + 1}")
 
     # ======================
     # RIGHT SIDE
@@ -99,7 +99,7 @@ for main_cycle in range(20000):
         try:
             right_found = pyautogui.locateOnScreen(
                 right_image_path,
-                confidence=0.6,  # אפשר לשנות חזרה ל-0.8
+                confidence=0.6,  # can be changed back to 0.8
                 grayscale=True
             )
         except pyautogui.ImageNotFoundException:
@@ -118,7 +118,7 @@ for main_cycle in range(20000):
             print(f"➡ right_counter: {current_right}")
 
             if 6 <= current_right <= 7:
-                print("💥 לוחץ B לפי ספירה (6-7)")
+                print("💥 Pressing B based on counter (6-7)")
                 time.sleep(random.uniform(0.73, 1.45))
                 keyboard.press('b')
                 time.sleep(random.uniform(1.3, 2.1))
@@ -127,13 +127,13 @@ for main_cycle in range(20000):
                 time.sleep(random.uniform(0.35, 1.12))
 
             if c_flag:
-                print("💥 לוחץ C")
+                print("💥 Pressing C")
                 keyboard.press('c')
                 time.sleep(random.uniform(0.08, 0.18))
                 keyboard.release('c')
 
             if v_flag:
-                print("💥 לוחץ V")
+                print("💥 Pressing V")
                 keyboard.press('v')
                 time.sleep(random.uniform(0.08, 0.18))
                 keyboard.release('v')
@@ -141,7 +141,7 @@ for main_cycle in range(20000):
             press_x_sequence()
             break
 
-        # לא מצא – הזז ימינה
+        # Not found – move right
         keyboard.press('right')
         keyboard.press('d')
         time.sleep(random.uniform(0.18, 0.27))
@@ -156,7 +156,7 @@ for main_cycle in range(20000):
         try:
             left_found = pyautogui.locateOnScreen(
                 left_image_path,
-                confidence=0.6,  # אפשר לשנות חזרה ל-0.8
+                confidence=0.6,  # can be changed back to 0.8
                 grayscale=True
             )
         except pyautogui.ImageNotFoundException:
@@ -171,7 +171,7 @@ for main_cycle in range(20000):
             print(f"⬅ left_counter: {current_left}")
 
             if 2 <= current_left <= 3:
-                print("💥 לוחץ Q לפי ספירה (2-3)")
+                print("💥 Pressing Q based on counter (2-3)")
                 time.sleep(random.uniform(0.73, 1.45))
                 keyboard.press('q')
                 time.sleep(random.uniform(1.3, 2.1))
@@ -182,7 +182,7 @@ for main_cycle in range(20000):
             press_x_sequence()
             break
 
-        # לא מצא – הזז שמאלה
+        # Not found – move left
         keyboard.press('left')
         keyboard.press('d')
         time.sleep(random.uniform(0.18, 0.27))
@@ -190,4 +190,4 @@ for main_cycle in range(20000):
         keyboard.release('left')
         time.sleep(random.uniform(0.06, 0.13))
 
-print("🏁 הסתיים בהצלחה")
+print("🏁 Finished successfully")
